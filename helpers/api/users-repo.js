@@ -5,6 +5,8 @@ import { db } from 'helpers/api';
 
 const { serverRuntimeConfig } = getConfig();
 const User = db.User;
+// const Player = db.player;
+// const team = db.team;
 
 export const usersRepo = {
     authenticate,
@@ -41,12 +43,31 @@ async function getById(id) {
 
 async function create(params) {
     // validate
+    console.log(params);
     if (await User.findOne({ username: params.username })) {
         throw 'Username "' + params.username + '" is already taken';
     }
 
-    const user = new User(params);
+    const player = {
+        name: "leo"
+    };
+    const team = {
+        name: "laliga",
+        players: player
+    }
+    const test = {
+        firstName: params.firstName,
+        lastName: params.lastName,
+        username: params.username,
+        password: params.password,
+        teams: team
+    };
 
+    const user = new User(params);
+    user.teams[0] = team;
+
+    //user.teams[0] = new team(new String("laliga"), [new Player(new String("leo"))]); 
+  
     // hash password
     if (params.password) {
         user.hash = bcrypt.hashSync(params.password, 10);

@@ -31,6 +31,8 @@ function Register() {
     const { errors } = formState;
 
     function onSubmit(user) {
+
+
         return userService.register(user)
             .then(() => {
                 alertService.success('Registration successful', true);
