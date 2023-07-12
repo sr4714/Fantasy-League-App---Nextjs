@@ -21,7 +21,11 @@ function Nav() {
             <div className="navbar-nav">
                 <NavLink href="/" exact className="nav-item nav-link">Home</NavLink>
                 <NavLink href="/users" className="nav-item nav-link">Users</NavLink>
+                <NavLink href="/users/teams" className="nav-item nav-link">teams</NavLink>
+                <NavLink href="/users/players" className="nav-item nav-link">players</NavLink>
+                <NavLink href="/users/search" className="nav-item nav-link">search</NavLink>
                 <button onClick={userService.logout} className="btn btn-link nav-item nav-link">Logout</button>
+                
             </div>
         </nav>
     );

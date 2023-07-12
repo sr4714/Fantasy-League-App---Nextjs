@@ -17,33 +17,21 @@ export const db = {
 
 // mongoose models with schema definitions
 
-function playerModel(){
 
-    playerSchema = new Schema({
-        name:  { type: String},
-       
-    });
-   // return mongoose.models.player || mongoose.model('player', playerSchema);
-}
-function teamModel(){
-    teamSchema = new Schema({
-        name: String,
-        players: {type: [playerSchema]}
-    });
-    //return mongoose.models.team || mongoose.model('team', teamSchema);
-
-}
 function userModel() {
 
     
     playerSchema = new Schema({
         name:  { type: String},
-       
+        score: { type: Number},
+        photo: { type: String},
+        id: { type: Number }
     });
 
     teamSchema = new Schema({
         name: String,
-        players: {type: [playerSchema]}
+        players: {type: [playerSchema]},
+        totalScore: { type: Number  },
     });
    
     const schema = new Schema({
