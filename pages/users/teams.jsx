@@ -15,6 +15,7 @@ function Teams() {
     useEffect(() => {
         setTeams(userService.userValue.teams);
         console.log(typeof(userService.userValue.teams));
+        
     }, []);
 
      function deleteTeam(name) {

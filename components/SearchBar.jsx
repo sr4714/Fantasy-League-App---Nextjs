@@ -1,17 +1,29 @@
-import React, {useState} from 'react'
+import React, {use, useEffect, useState} from 'react'
+
 
 export const SearchBar = ({setResults  }) => {
 
+
+
     const [input, setInput] = useState();
+    const [key, setKey] = useState("key");
+    useEffect(() => {
+      fetch("/api/getKey").then(response => response.json()).then(data => {setKey(data.key);});
+    },[]);
     const fetchPlayer = (value) => {
 
         const url = 'https://footapi7.p.rapidapi.com/api/search/'+value;
         
+          //let x;
+          //const res =  fetch("/api/getData").then(response => response.json()).then(data => {return data.key;});
+          
+        console.log(key);
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'ab2eb352b2msh88895f324971f1cp18da31jsna309a740cb2e',
+                'X-RapidAPI-Key': key,
                 'X-RapidAPI-Host': 'footapi7.p.rapidapi.com'
+
             }
         };
 

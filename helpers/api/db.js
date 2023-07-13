@@ -4,7 +4,9 @@ import mongoose from 'mongoose';
 const { serverRuntimeConfig } = getConfig();
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb+srv://sr4714:SPC3QrcsFqRm7Ixj@cluster0.nusarp2.mongodb.net/?retryWrites=true&w=majority"||process.env.MONGODB_URI || serverRuntimeConfig.connectionString);
+
+
+mongoose.connect(process.env.MONGODB_URI || serverRuntimeConfig.connectionString);
 mongoose.Promise = global.Promise;
 let playerSchema;
 let teamSchema;
