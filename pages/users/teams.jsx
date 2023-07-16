@@ -14,7 +14,7 @@ function Teams() {
 
     useEffect(() => {
         setTeams(userService.userValue.teams);
-        console.log(typeof(userService.userValue.teams));
+        
         
     }, []);
 
@@ -56,6 +56,7 @@ function Teams() {
                             <td>{team.totalScore}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link href={`/users/team/${team.name}`} className="btn btn-sm btn-primary me-1">Edit</Link>
+                                <Link href={`/users/compare/${team.name}`} className="btn btn-sm btn-primary me-1">Compare</Link>
                                 <button onClick={() => deleteTeam(team.name)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={team.isDeleting}>
                                     {team.isDeleting
                                         ? <span className="spinner-border spinner-border-sm"></span>
@@ -75,7 +76,7 @@ function Teams() {
                     {teams && !teams.length &&
                         <tr>
                             <td colSpan="4" className="text-center">
-                                <div className="p-2">No Users To Display</div>
+                                <div className="p-2">No Teams To Display</div>
                             </td>
                         </tr>
                     }
