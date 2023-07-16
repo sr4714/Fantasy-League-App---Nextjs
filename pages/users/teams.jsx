@@ -45,7 +45,7 @@ function Teams() {
                 <thead>
                     <tr>
                         <th style={{ width: '30%' }}> Name</th>
-                        
+                        <th style={{ width: '10%' }}> Score</th>
                         <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
@@ -53,7 +53,7 @@ function Teams() {
                     {teams && teams.map(team =>
                         <tr key={team.id}>
                             <td>{team.name}</td>
-                            
+                            <td>{team.totalScore}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link href={`/users/team/${team.name}`} className="btn btn-sm btn-primary me-1">Edit</Link>
                                 <button onClick={() => deleteTeam(team.name)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={team.isDeleting}>

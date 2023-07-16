@@ -14,20 +14,20 @@ function Index() {
         userService.getAll().then(x => setUsers(x));
     }, []);
 
-    function deleteUser(id) {
-        setUsers(users.map(x => {
-            if (x.id === id) { x.isDeleting = true; }
-            return x;
-        }));
-        userService.delete(id).then(() => {
-            setUsers(users => users.filter(x => x.id !== id));
-        });
-    }
+    // function deleteUser(id) {
+    //     setUsers(users.map(x => {
+    //         if (x.id === id) { x.isDeleting = true; }
+    //         return x;
+    //     }));
+    //     userService.delete(id).then(() => {
+    //         setUsers(users => users.filter(x => x.id !== id));
+    //     });
+    // }
 
     return (
         <Layout>
             <h1>Users</h1>
-            <Link href="/users/add" className="btn btn-sm btn-success mb-2">Add User</Link>
+            
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -44,13 +44,13 @@ function Index() {
                             <td>{user.lastName}</td>
                             <td>{user.username}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link href={`/users/edit/${user.id}`} className="btn btn-sm btn-primary me-1">Edit</Link>
-                                <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={user.isDeleting}>
+                                <Link href={`/users/edit/${user.id}`} className="btn btn-sm btn-primary me-1">View Teams</Link>
+                                {/* <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={user.isDeleting}>
                                     {user.isDeleting
                                         ? <span className="spinner-border spinner-border-sm"></span>
                                         : <span>Delete</span>
                                     }
-                                </button>
+                                </button> */}
                             </td>
                         </tr>
                     )}

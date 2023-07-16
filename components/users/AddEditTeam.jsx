@@ -36,13 +36,21 @@ function AddEditTeam(props) {
 
     const [players, setPlayers] = useState([]);
     const [results, setResults] = useState([]);
+    const [score, setScore] = useState(0);
     // if(team) {
     //     setPlayers(team.players);
     // }
 
     useEffect(() => {
-        setPlayers(team?.players);
-       
+        if(team){
+            setPlayers(team.players);
+            setScore(team.totalScore);
+        }
+        else{
+            setPlayers([]);
+            setScore(0);
+        }
+        
         
     }, []);
 
@@ -54,13 +62,14 @@ function AddEditTeam(props) {
             if (team) {
                 team.name = data.name;
                 team.players = players;
+                team.totalScore = score;
                 await userService.update(userService.userValue.id, userService.userValue);
                 message = 'team updated';
             } else {
                 const temp = {
                     name: data.name,
                     players: players,
-                    totalScore: 0
+                    totalScore: score
                 }
                 userService.userValue.teams.push(temp);
                 await userService.update(userService.userValue.id, userService.userValue);
@@ -76,7 +85,7 @@ function AddEditTeam(props) {
         }
     }
 
-    function deletePlayer(id) {
+    function deletePlayer(id, sco) {
         
         // setTeams(teams.map(x => {
         //     if (x.name === name) { x.isDeleting = true; }
@@ -91,10 +100,28 @@ function AddEditTeam(props) {
         //     setTeams(teams => teams.filter(x => x.name !== name));
         // });
         // console.log(user);
-
         setPlayers(players => players.filter(x => x.id !== id));
+        if(players.length === 0){
+            setScore(0);
+        }
+        else setScore(score - sco);
 
     }
+
+    function getScore(){
+        var x = players.reduce(function(tot, player) { 
+            // return the sum with previous value
+            return tot + player.score;
+          
+            // set initial value as 0
+          },0);
+    
+          setScore(x);
+    }
+
+    
+
+    
 
     return (
         <div>
@@ -117,6 +144,11 @@ function AddEditTeam(props) {
                 <Link href="/users/teams" className="btn btn-link">Cancel</Link>
             </div>
         </form>
+
+        <div>
+            <h6>Team Score: {score}</h6>
+            
+        </div>
         
         <table className="table table-striped">
                 <thead>
@@ -127,14 +159,14 @@ function AddEditTeam(props) {
                     </tr>
                 </thead>
                 <tbody>
-                
+                    {console.log(players)}
                     {players && players.map(player =>
                         <tr key={player.id}>
                             <td>{player.name}</td>
-                            
+                            <td>{player.score}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 
-                                <button onClick={() => deletePlayer(player.id)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={player.isDeleting}>
+                                <button onClick={() => deletePlayer(player.id, player.score)} className="btn btn-sm btn-danger btn-delete-user" style={{ width: '60px' }} disabled={player.isDeleting}>
                                     {player.isDeleting
                                         ? <span className="spinner-border spinner-border-sm"></span>
                                         : <span>Delete</span>
@@ -159,11 +191,11 @@ function AddEditTeam(props) {
                     }
                 </tbody>
         </table>
-        
+       
 
 
                 <SearchBar setResults={setResults}/>
-                <SearchResultsList results={results} players={players} setPlayers={setPlayers} setResults={setResults}/> 
+                <SearchResultsList results={results} players={players} setPlayers={setPlayers} setResults={setResults} getScore={getScore}/> 
         </div>
     );
 }

@@ -17,13 +17,14 @@ function Edit() {
 
         // fetch user and set default form values if in edit mode
         userService.getById(id)
-            .then(x => setUser(x))
+            .then(x => { setUser(x);})
             .catch(alertService.error)
+        //console.log(user);
     }, [router]);
 
     return (
         <Layout>
-            <h1>Edit User</h1>
+            <h1>{user?.firstName}&apos;s Teams</h1>
             {user ? <AddEdit user={user} /> : <Spinner />}
         </Layout>
     );

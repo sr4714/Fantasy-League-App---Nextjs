@@ -17,7 +17,7 @@ export const SearchBar = ({setResults  }) => {
           //let x;
           //const res =  fetch("/api/getData").then(response => response.json()).then(data => {return data.key;});
           
-        console.log(key);
+    
         const options = {
             method: 'GET',
             headers: {
@@ -32,8 +32,11 @@ export const SearchBar = ({setResults  }) => {
                 const results = Object.values(json).filter((player) => {
                             return  player;
                         });
-            setResults(results[0]);
-            console.log(results[0]);
+                        const x = results[0].filter(result => result.type === 'player');
+              setResults(x);
+              //console.log(x);
+            
+            
             });
             
             

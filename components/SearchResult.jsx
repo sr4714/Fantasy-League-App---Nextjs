@@ -1,16 +1,28 @@
 import React from 'react'
 
-export const SearchResult = ({result, players, setPlayers, setResults}) => {
+export const SearchResult = ({result, players, setPlayers, setResults, getScore}) => {
+
+
+ 
 
   function handleClick(){
+    const player = {
+      name: result.entity.name,
+      score: result.score,
+
+      id: result.entity.id
+    }
     let temp = players;
-    temp.push(result);
+    temp.push(player);
     setPlayers(temp);
     setResults([]);
+    getScore();
   }
+  
   return (
     <div onClick={(e) => handleClick()}>
-        {result.score}
+        <div>{result.entity.name}</div><div>{result.score}</div>
+        
     </div>
   )
 }
