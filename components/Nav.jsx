@@ -22,7 +22,7 @@ function Nav() {
                 <NavLink href="/" exact className="nav-item nav-link">Home</NavLink>
                 <NavLink href="/users" className="nav-item nav-link">Users</NavLink>
                 <NavLink href="/users/teams" className="nav-item nav-link">Teams</NavLink>
-                
+                <NavLink href="/users/rankings" className="nav-item nav-link">Rankings</NavLink>
                 <button onClick={userService.logout} className="btn btn-link nav-item nav-link">Logout</button>
                 
             </div>

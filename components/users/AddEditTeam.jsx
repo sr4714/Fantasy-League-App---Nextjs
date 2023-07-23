@@ -185,7 +185,7 @@ function AddEditTeam(props) {
                     {players && !players.length &&
                         <tr>
                             <td colSpan="4" className="text-center">
-                                <div className="p-2">No Users To Display</div>
+                                <div className="p-2">No Players To Display</div>
                             </td>
                         </tr>
                     }
