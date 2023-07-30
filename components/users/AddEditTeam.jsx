@@ -159,7 +159,7 @@ function AddEditTeam(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {console.log(players)}
+                    
                     {players && players.map(player =>
                         <tr key={player.id}>
                             <td>{player.name}</td>

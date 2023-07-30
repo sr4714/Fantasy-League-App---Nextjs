@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import 'styles/globals.css';
+import './styles.css';
 
 import { userService } from 'services';
 import { Nav, Alert } from 'components';

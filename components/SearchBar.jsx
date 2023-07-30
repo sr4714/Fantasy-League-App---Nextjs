@@ -1,4 +1,5 @@
 import React, {use, useEffect, useState} from 'react'
+import { FaSearch } from "react-icons/fa";
 
 
 export const SearchBar = ({setResults  }) => {
@@ -44,19 +45,12 @@ export const SearchBar = ({setResults  }) => {
             console.error(error);
           }
 
-        // fetch("https://jsonplaceholder.typicode.com/users")
-        // .then(response => response.json())
-        // .then(json => {
-        //     const results = json.filter((player) => {
-        //         return value && player && player.name && player.name.toLowerCase().includes(value.toLowerCase());
-        //     });
-        //     setResults(results);
-        // });
+      
     }
 
     const handleChange = (value) => {
         if(value.length>1){
-          console.log(value.length);
+          
           fetchPlayer(value);
         }
         setInput(value);
@@ -64,7 +58,10 @@ export const SearchBar = ({setResults  }) => {
     };
   return (
     <div className='input-wrapper'>
+    <FaSearch id="search-icon" />
+    
         <input
+            id='input-search'
             placeholder='Search Player'
             value={input}
             onChange={(e) => handleChange(e.target.value)}

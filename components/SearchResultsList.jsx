@@ -1,6 +1,7 @@
 import React from 'react'
 import { SearchResult } from './SearchResult';
 
+
 export const SearchResultsList = ({ results, players, setPlayers, setResults, getScore }) => {
   
     return (
